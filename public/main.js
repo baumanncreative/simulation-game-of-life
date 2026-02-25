@@ -82,7 +82,8 @@ function resizeCanvasDisplay() {
   const stageInnerWidth = stage
     ? Math.max(1, Math.floor((stage.clientWidth || stage.getBoundingClientRect().width) - stagePaddingX - 2))
     : availableHeight;
-  const nextDisplaySize = Math.max(1, Math.floor(Math.min(availableHeight, stageInnerWidth)));
+  const stageContentWidth = Math.max(1, Math.floor(stageInnerWidth * 0.96));
+  const nextDisplaySize = Math.max(1, Math.floor(Math.min(availableHeight, stageContentWidth)));
 
   if (nextDisplaySize !== displaySize) {
     displaySize = nextDisplaySize;
