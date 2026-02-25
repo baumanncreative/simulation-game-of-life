@@ -1,14 +1,25 @@
 # simulation-game-of-life
 
-A pure static web implementation of Conway's Game of Life using HTML, CSS, and JavaScript.
+A static Astro site that hosts a plain JavaScript implementation of Conway's Game of Life.
 
 ## Live Demo
 
-https://baumanncreative.github.io/simulation-game-of-life/
+[https://baumanncreative.github.io/simulation-game-of-life/](https://baumanncreative.github.io/simulation-game-of-life/)
 
-## How to run locally
+## Tech Stack
 
-Open `index.html` directly in your browser.
+- [Astro](https://astro.build/) for layout and static site generation
+- Plain JavaScript (`/public/main.js`) for the simulation logic
+- Static CSS (`/public/styles.css`) for styling
+
+## Local Development
+
+```bash
+npm install
+npm run dev
+```
+
+Astro runs locally at `http://localhost:4321` by default.
 
 ## License
 
