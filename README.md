@@ -19,7 +19,15 @@ npm install
 npm run dev
 ```
 
-Astro runs locally at `http://localhost:4321` by default.
+Astro runs locally at `http://localhost:4321/simulation-game-of-life/` by default.
+
+Optional static test (without Astro dev server):
+
+```bash
+python3 -m http.server 4173
+```
+
+Then open `http://127.0.0.1:4173/`.
 
 ## License
 

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Game of Life | baumanncreative</title>
+  <link rel="stylesheet" href="public/styles.css">
+</head>
+<body>
+  <div class="site-shell">
+    <header class="site-header">
+      <div class="layout-shell site-header-inner">
+        <img
+          src="public/assets/images/logo-wordmark.png"
+          alt="baumanncreative Wortmarke"
+          width="300"
+          height="60"
+          class="site-logo"
+          loading="eager"
+          decoding="async"
+        >
+        <nav class="site-nav" aria-label="Seitennavigation">
+          <span class="nav-item">Simulation</span>
+          <span class="nav-item">Game of Life</span>
+        </nav>
+      </div>
+    </header>
+
+    <main class="site-main">
+      <div class="layout-shell">
+        <div id="app">
+          <div id="controls">
+            <label>Kantenlänge <input id="size" type="number" min="5" max="2000" value="200" step="1"></label>
+            <label>Start-Lebendanteil % <input id="density" type="number" min="0" max="100" value="20" step="1"></label>
+            <label>Takt (ms) <input id="tick" type="number" min="1" max="5000" value="100" step="1"></label>
+            <button id="init">Init/Reset</button>
+            <button id="toggle">Start</button>
+            <button id="step">Step</button>
+            <div id="status">
+              <div id="info">Gen: 0 | Lebendanteil: 0.0% (Delta +0.0%)</div>
+              <label><input id="grid" type="checkbox" checked> Gitterraster</label>
+            </div>
+            <div id="note">Edge-Handling: Wrap-around (Torus).</div>
+          </div>
+          <div id="stage">
+            <canvas id="canvas"></canvas>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="layout-shell site-footer-inner">
+        <p>© baumanncreative gmbh</p>
+        <div class="footer-nav" aria-label="Rechtliches">
+          <span>Impressum</span>
+          <span>Datenschutz</span>
+          <span>AGBs</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="public/main.js" defer></script>
+</body>
+</html>
