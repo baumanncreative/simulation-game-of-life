@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -30,17 +30,21 @@
       <div class="layout-shell">
         <div id="app">
           <div id="controls">
-            <label>Kantenlänge <input id="size" type="number" min="5" max="2000" value="200" step="1"></label>
-            <label>Start-Lebendanteil % <input id="density" type="number" min="0" max="100" value="20" step="1"></label>
-            <label>Takt (ms) <input id="tick" type="number" min="1" max="5000" value="100" step="1"></label>
-            <button id="init">Init/Reset</button>
-            <button id="toggle">Start</button>
-            <button id="step">Step</button>
-            <div id="status">
-              <div id="info">Gen: 0 | Lebendanteil: 0.0% (Delta +0.0%)</div>
-              <label><input id="grid" type="checkbox" checked> Gitterraster</label>
+            <div class="controls-row controls-row-top">
+              <label>Grid Size <input id="size" type="number" min="5" max="2000" value="200" step="1"></label>
+              <label>Initial Live Cells % <input id="density" type="number" min="0" max="100" value="20" step="1"></label>
+              <label>Tick (ms) <input id="tick" type="number" min="1" max="5000" value="100" step="1"></label>
+              <button id="init">Init/Reset</button>
+              <button id="toggle">Start</button>
+              <button id="step">Step</button>
             </div>
-            <div id="note">Edge-Handling: Wrap-around (Torus).</div>
+            <div class="controls-row controls-row-bottom">
+              <div id="note">Edge Handling: Wrap-around (Torus).</div>
+              <div id="status">
+                <div id="info">Generation: 0 | Live Cells: 0.0% (Delta +0.0%)</div>
+                <label class="grid-toggle"><input id="grid" type="checkbox" checked> Grid Overlay</label>
+              </div>
+            </div>
           </div>
           <div id="stage">
             <canvas id="canvas"></canvas>
@@ -51,12 +55,7 @@
 
     <footer class="site-footer">
       <div class="layout-shell site-footer-inner">
-        <p>© baumanncreative gmbh</p>
-        <div class="footer-nav" aria-label="Rechtliches">
-          <span>Impressum</span>
-          <span>Datenschutz</span>
-          <span>AGBs</span>
-        </div>
+        <p>© 2026 baumanncreative gmbh</p>
       </div>
     </footer>
   </div>

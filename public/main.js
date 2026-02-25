@@ -2,6 +2,7 @@ const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d', { alpha: false });
 
 const controls = document.getElementById('controls');
+const stage = document.getElementById('stage');
 const sizeInput = document.getElementById('size');
 const densityInput = document.getElementById('density');
 const tickInput = document.getElementById('tick');
@@ -75,9 +76,16 @@ function rebuildMapping() {
 }
 
 function resizeCanvasDisplay() {
-  const available = Math.max(1, Math.floor(window.innerHeight - controls.offsetHeight));
-  if (available !== displaySize) {
-    displaySize = available;
+  const availableHeight = Math.max(1, Math.floor(window.innerHeight - controls.offsetHeight - 24));
+  const stageStyles = stage ? getComputedStyle(stage) : null;
+  const stagePaddingX = stageStyles ? parseFloat(stageStyles.paddingLeft) + parseFloat(stageStyles.paddingRight) : 0;
+  const stageInnerWidth = stage
+    ? Math.max(1, Math.floor((stage.clientWidth || stage.getBoundingClientRect().width) - stagePaddingX - 2))
+    : availableHeight;
+  const nextDisplaySize = Math.max(1, Math.floor(Math.min(availableHeight, stageInnerWidth)));
+
+  if (nextDisplaySize !== displaySize) {
+    displaySize = nextDisplaySize;
     canvas.width = displaySize;
     canvas.height = displaySize;
     canvas.style.width = displaySize + 'px';
@@ -207,7 +215,7 @@ function updateInfo() {
   const alivePercent = total > 0 ? (aliveCount / total) * 100 : 0;
   const delta = alivePercent - baselineAlivePercent;
   const deltaText = `${delta >= 0 ? '+' : ''}${delta.toFixed(1)}%`;
-  info.textContent = `Gen: ${generation} | Lebendanteil: ${alivePercent.toFixed(1)}% (Delta ${deltaText})`;
+  info.textContent = `Generation: ${generation} | Live Cells: ${alivePercent.toFixed(1)}% (Delta ${deltaText})`;
 }
 
 function loop(time) {
