@@ -4,7 +4,7 @@ A pure static web implementation of Conway's Game of Life using HTML, CSS, and J
 
 ## Live Demo
 
-Placeholder: [https://example.com/simulation-game-of-life](https://example.com/simulation-game-of-life)
+https://baumanncreative.github.io/simulation-game-of-life/
 
 ## How to run locally
 
