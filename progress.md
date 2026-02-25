@@ -43,3 +43,31 @@ Migration notes (Astro conversion):
 - Verified `npm run build` succeeds.
 - Important: switched page asset URLs to `import.meta.env.BASE_URL` in `index.astro` so generated paths include `/simulation-game-of-life/` on GitHub Pages.
 - Fix after build validation: normalized `import.meta.env.BASE_URL` in `src/pages/index.astro` to guarantee correct slash joining (e.g. `/simulation-game-of-life/styles.css`).
+
+Follow-up fix (local start issue):
+- Reproduced user-reported issue with static server root (`python3 -m http.server 4180`): directory listing shown because root `index.html` no longer existed after Astro migration.
+- Added compatibility root `index.html` that serves the same UI via `public/styles.css` and `public/main.js` for static local server startup.
+- Updated README local section to include both Astro dev URL and optional static server command.
+
+Retest:
+- Static server path (`http://127.0.0.1:4180/`) now loads simulation page (verified via Playwright screenshot).
+- Astro dev path (`http://127.0.0.1:4321/simulation-game-of-life/`) loads simulation page (verified via Playwright screenshot).
+- `npm run build` passes after fix.
+
+Testing constraint:
+- Full automated click-flow test (Start/Pause/Step/Init) via custom Playwright script could not run in this execution mode due browser launch permission error (`MachPortRendezvous`, `EPERM`).
+- Functional render/init confirmed from screenshots and generated status text (`Gen`/`Lebendanteil`) on both local paths.
+
+Layout update request (English labels + alignment + scaling + footer):
+- Converted all control/status labels to English.
+- Reworked controls into two rows so status + grid toggle align with edge handling note on the lower row.
+- Changed grid toggle label to "Grid Overlay" and checkbox accent to brand red.
+- Updated footer to left-only copyright with year (`© 2026 baumanncreative gmbh`), removed right-side legal links.
+- Updated canvas display sizing logic to fit both available height and stage width, preventing horizontal scroll for wide cell counts.
+
+Verification:
+- `npm run build` successful.
+- Visual checks via Playwright screenshots:
+  - Astro route: `/simulation-game-of-life/`
+  - Static local root route: `/`
+  - iPhone SE viewport check confirms controls/footer and non-overflowing canvas width.
